@@ -29,6 +29,8 @@ class Hanoi_problema:
                     gyerekek.append(("operator HF", uj_allapot))
 
         return gyerekek
+    def __str__(self):
+    return f"Kezdő állapot: {self.kezdo}, Cél állapot: {self.cel}"
 
 
 if __name__ == "__main__":
