@@ -1,7 +1,9 @@
-class kancso_feladat:
+from keres import Feladat
+
+class kancso_feladat(Feladat):
     def __init__(self, ke, c):
-        self.kezde = ke
-        self.cel = c
+        self.kezdő = ke
+        self.cél = c
         self.MAX1 = 3
         self.MAX2 = 5
         self.MAX3 = 8
@@ -22,13 +24,13 @@ class kancso_feladat:
                 tolteni_tud = False
                 i += 1
                 continue
-            j = 0 
+            j = 0
             while j < 3:
                 if i == j:
                     j += 1
                     continue
                 if 0 <= allapot[j] < MAXS[j]:
-                    text = f"{i+1}->{j+1}"
+                    text = f"{i + 1}->{j + 1}"
                     uj_allapot = [a1, a2, a3]
                     T = min(MAXS[j] - allapot[j], allapot[i])
                     uj_allapot[i] = allapot[i] - T
@@ -38,11 +40,10 @@ class kancso_feladat:
             i += 1
 
         return gyerekek
-            
 
-            #megnézzük melyik kancsot tudjuk tölteni
-            #megnézzük melyik kancsot tudjuk üríteni
-            #megnézzük hova tudok átönteni
+        # megnézzük melyik kancsot tudjuk tölteni
+        # megnézzük melyik kancsot tudjuk üríteni
+        # megnézzük hova tudok átönteni
 
         # a1, a2, a3 = allapot
 
@@ -85,8 +86,6 @@ class kancso_feladat:
         # return gyerekek
 
 
-
 if __name__ == "__main__":
-    kancso = kancso_feladat((0,0,8),4)
-    print(kancso.rakovetkezo((0,5,3)))
-  
+    kancso = kancso_feladat((0, 0, 8), 4)
+    print(kancso.rakovetkezo((0, 5, 3)))
