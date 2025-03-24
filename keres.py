@@ -72,8 +72,9 @@ def fakereső(feladat, perem):
     return None # nincs megoldás
 
 def szélességi_fakereső (feladat, perem):
-    
+    return fakereső(feladat, Sor())
 
 
-
+def mélységi_fakeresés(feladat):
+    return fakereső(feladat,Verem())
 
