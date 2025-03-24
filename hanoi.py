@@ -1,12 +1,12 @@
 class Hanoi_problema:
     def __init__(self, ke, c):
-        self.kezdo = ke
-        self.cel = c
+        self.kezdő = ke
+        self.cél = c
 
-    def celteszt(self, allapot):
-        return allapot == self.cel
+    def célteszt(self, allapot):
+        return allapot == self.cél
 
-    def rakovetkezo(self,a):
+    def rákövetkező(self,a):
         gyerekek = list()
 
         for melyiket in range (0,3):
@@ -29,8 +29,6 @@ class Hanoi_problema:
                     gyerekek.append(("operator HF", uj_allapot))
 
         return gyerekek
-    def __str__(self):
-    return f"Kezdő állapot: {self.kezdo}, Cél állapot: {self.cel}"
 
 
 if __name__ == "__main__":
