@@ -1,14 +1,14 @@
 class n_kiralyno_problema:
     def __init__(self, k, c):
-        self.kezdo = k
-        self.cel = c
+        self.kezdő = k
+        self.cél = c
         self.N = len(k) - 1
 
-    def celteszt (self, a):
-        return a[self.N] == self.cel
+    def célteszt (self, a):
+        return a[self.N] == self.cél
 
-    def rakovetkezo (self, a):
-        gyerekek = []
+    def rákövetkező (self, a):
+        gyereke = []
         s = a[self.N]
 
         for j in range(0, self.N):
@@ -26,10 +26,10 @@ class n_kiralyno_problema:
                 tmp[s] = j
                 tmp[self.N] = s + 1
                 uj_allapot = tuple(tmp)
-                gyerekek.append ((s+" -> "+j, uj_allapot))
-                
+                gyereke.append ((s+" -> "+j, uj_allapot))
 
-        return gyerekek 
+
+        return gyereke
 
 
 
