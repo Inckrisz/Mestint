@@ -1,4 +1,5 @@
-from keres import Feladat
+from keres import *
+
 
 class kancso_feladat(Feladat):
     def __init__(self, ke, c):
@@ -8,10 +9,10 @@ class kancso_feladat(Feladat):
         self.MAX2 = 5
         self.MAX3 = 8
 
-    def celteszt(self, allapot):
-        return allapot[0] == self.cel or allapot[1] == self.cel or allapot[2] == self.cel
+    def célteszt(self, allapot):
+        return allapot[0] == self.cél or allapot[1] == self.cél or allapot[2] == self.cél
 
-    def rakovetkezo(self, allapot):
+    def rákövetkező(self, allapot):
         a1, a2, a3 = allapot
         gyerekek = []
         tolteni_tud = True
@@ -88,4 +89,10 @@ class kancso_feladat(Feladat):
 
 if __name__ == "__main__":
     kancso = kancso_feladat((0, 0, 8), 4)
-    print(kancso.rakovetkezo((0, 5, 3)))
+    #print(kancso.rákövetkező((0, 5, 3)))
+
+    csúcs = szélességi_fakereső(kancso)
+
+    megoldas = csúcs.út()
+    megoldas.reverse() # visszafele kell olvasni a megoldáshoz
+    print(megoldas)
