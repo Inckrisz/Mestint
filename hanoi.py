@@ -1,5 +1,6 @@
-class Hanoi_problema:
-    def __init__(self, ke, c):
+from keres import *
+class Hanoi_problema(Feladat):
+    def __init__(self,ke, c ):
         self.kezdő = ke
         self.cél = c
 
@@ -9,20 +10,21 @@ class Hanoi_problema:
     def rákövetkező(self,a):
         gyerekek = list()
 
-        for melyiket in range (0,3):
-            for hova in ["P","Q","R"]:
-                alkalmazhato = True
+        for melyiket in range(0,3):
+            for hova in ['P','Q','R']:
+                alkalmazható = True
                 if a[melyiket] != hova:
-                    for i in range (0, melyiket):
+                    for i in range(0,melyiket):
                         if a[i] != a[melyiket] and a[i] != hova:
-                            alkalmazhato = True
+                            alkalmazható =True
                         else:
-                            alkalmazhato = False
+                            alkalmazható = False
                             break
-                else:
-                    alkalmazhato = False
 
-                if alkalmazhato:
+                else:
+                    alkalmazható = False
+
+                if alkalmazható:
                     tmp = list(a)
                     tmp[melyiket] = hova
                     uj_allapot = tuple(tmp)
@@ -31,5 +33,15 @@ class Hanoi_problema:
         return gyerekek
 
 
+
+
+
+
+
+
 if __name__ == "__main__":
-    h = Hanoi_problema(("P","P","P"), ("R","R","R"))
+    h = Hanoi_problema(('P','P','P'), ('R','R','R'))
+    csúcs = szélességi_fakeresés(h)
+    ut = csúcs.út()
+    ut.reverse()
+    print(ut)
