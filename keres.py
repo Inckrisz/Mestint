@@ -5,7 +5,7 @@ from seged import *
 class Feladat:
 
     def __init__(self, kezdő, cél=None):
-        self.kezdő = kezdő;
+        self.kezdő = kezdő
         self.cél = cél
 
     def rákövetkező(self, állapot):
@@ -55,44 +55,47 @@ class Csúcs:
         for (művelet, következő) in feladat.rákövetkező(self.állapot):
             if következő not in [csúcs.állapot for csúcs in self.út()]:
                 yield Csúcs(következő, self, művelet,
-                            feladat.útköltség(self.útköltség, self.állapot, művelet,
-                                              következő))
-
-
+                            feladat.útköltség(self.útköltség, self.állapot, művelet,                                              következő))
 
 def fakereső(feladat, perem):
     perem.append(Csúcs(feladat.kezdő))
     while perem:
         csúcs = perem.pop()
         if feladat.célteszt(csúcs.állapot):
-            return csúcs
+            return  csúcs
         else:
-            perem.extend(csúcs.kiterjeszt(feladat)) # ha nem cél állapot belerakjuk a perembe a gyermekeit a csúcsnak
+            perem.extend(csúcs.kiterjeszt(feladat))
 
-    return None # nincs megoldás
+    return None
 
-def szélességi_fakereső (feladat):
+
+def szélességi_fakeresés(feladat):
     return fakereső(feladat, Sor())
-
 
 def mélységi_fakeresés(feladat):
     return fakereső(feladat,Verem())
 
+
 def gráfkereső(feladat, perem):
     perem.append(Csúcs(feladat.kezdő))
-    kifejtési_sor = set() # gráfkereső abban tér el hogy kötelező megnézni hogy kifejtettük-e már
+    kifejtési_sor = set()
     while perem:
         csúcs = perem.pop()
         if feladat.célteszt(csúcs.állapot):
             return csúcs
         if csúcs.állapot not in kifejtési_sor:
-            kifejtési_sor.add(csúcs.állapot) # ha nem volt kifejtve berakjuk a setbe
-            perem.extend(csúcs.kiterjeszt(feladat)) # ha nem cél állapot belerakjuk a perembe a gyermekeit a csúcsnak
+            kifejtési_sor.add(csúcs.állapot)
+            perem.extend(csúcs.kiterjeszt(feladat))
 
-    return None # nincs megoldás
+    return None
 
-def szélességi_gráfkereső (feladat):
-    return gráfkereső(feladat, Sor())
+
+def szélességi_gráfkereső(feladat):
+
+    return  gráfkereső(feladat, Sor())
 
 def mélységi_gráfkereső(feladat):
-    return gráfkereső(feladat,Verem())
+
+    return gráfkereső(feladat, Verem())
+
+
