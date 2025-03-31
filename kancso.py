@@ -1,4 +1,6 @@
 from keres import *
+from keres import best_first
+from seged import *
 
 
 class kancso_feladat(Feladat):
@@ -86,13 +88,18 @@ class kancso_feladat(Feladat):
         #     gyerekek.append(("3->2", uj_allapot))
         # return gyerekek
 
+def heurisztika(csúcs):
+    a = csúcs.állapot
+    return min([abs(a[0]-4), abs(a[1]-4), abs(a[2]-4)])
+
 
 if __name__ == "__main__":
     kancso = kancso_feladat((0, 0, 8), 4)
     #print(kancso.rákövetkező((0, 5, 3)))
 
-    csúcs = szélességi_fakereső(kancso)
-
+    #csúcs = szélességi_fakeresés(kancso)
+    csúcs = best_first(kancso, heurisztika)
     megoldas = csúcs.út()
     megoldas.reverse() # visszafele kell olvasni a megoldáshoz
     print(megoldas)
+    print(csúcs.megoldás())
