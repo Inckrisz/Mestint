@@ -2,6 +2,8 @@
 import bisect
 import random
 import functools
+import heapq
+from collections import deque
 
 class Várólista:
     def __init__(self):
@@ -23,14 +25,37 @@ class Sor(Várólista):
         return len(self.A) - self.kezd
     def extend(self, elemek):
         self.A.extend(elemek)
+# class Sor(Várólista):
+#     def __init__(self):
+#         self.heap = []
+#         self.counter = 0  # Időbélyeg az érkezési sorrend megőrzéséhez
+
+#     def append(self, elem):
+#         heapq.heappush(self.heap, (self.counter, elem))
+#         self.counter += 1
+
+#     def __len__(self):
+#         return len(self.heap)
+
+#     def pop(self):
+#         if not self.heap:
+#             raise IndexError("A sor üres!")
+#         return heapq.heappop(self.heap)[1]  # Csak az adatot adjuk vissza
         
     def pop(self):
-        e = self.A[self.kezd]
-        self.kezd += 1
-        if self.kezd > 5 and self.kezd > len(self.A)/2:
-            self.A = self.A[self.kezd:]
-            self.kezd = 0
+        # e = self.A[self.kezd]
+        # self.kezd += 1
+        # if self.kezd > 5 and self.kezd > len(self.A)/2:
+        #     self.A = self.A[self.kezd:]
+        #     self.kezd = 0
+        # return e
+
+        e = self.A[0]
+        self.A = self.A[1:]  # Minden hívásnál levágjuk az első elemet
         return e
+
+       
+    
 
 
 class RLElem:
@@ -64,3 +89,4 @@ def argmin(lista, fv):
         if x_érték < legjobb_érték:
             legjobb, legjobb_érték = x, x_érték
     return legjobb
+
