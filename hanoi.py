@@ -28,7 +28,7 @@ class Hanoi_problema(Feladat):
                     tmp = list(a)
                     tmp[melyiket] = hova
                     uj_allapot = tuple(tmp)
-                    gyerekek.append(("operator HF", uj_allapot))
+                    gyerekek.append((f"{melyiket+1}->{hova}", uj_allapot))
 
         return gyerekek
 
@@ -45,3 +45,4 @@ if __name__ == "__main__":
     ut = csúcs.út()
     ut.reverse()
     print(ut)
+    print(csúcs.megoldás())
