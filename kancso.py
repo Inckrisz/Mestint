@@ -17,14 +17,10 @@ class kancso_feladat(Feladat):
     def rákövetkező(self, allapot):
         a1, a2, a3 = allapot
         gyerekek = []
-        tolteni_tud = True
-        lehet_bele_tolteni = True
         MAXS = [self.MAX1, self.MAX2, self.MAX3]
         i = 0
         while i < 3:
-            tolteni_tud = True
             if allapot[i] == 0:
-                tolteni_tud = False
                 i += 1
                 continue
             j = 0
