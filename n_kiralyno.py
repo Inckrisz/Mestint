@@ -1,4 +1,4 @@
-from keres import Feladat,szélességi_fakeresés
+from keres import *
 
 
 class n_kiralyno_problema(Feladat):
@@ -34,19 +34,31 @@ class n_kiralyno_problema(Feladat):
         return gyereke
 
 
+def heurisztika(csúcs):
+    """A támadásban lévő királynők számát adja vissza."""
+    állapot = csúcs.állapot[:-1]  # Az utolsó érték az elhelyezett királynők száma, nem kell
+    N = len(állapot)
+    ütközések = 0
 
+    for i in range(N):
+        for j in range(i + 1, N):
+            if állapot[i] == állapot[j] or abs(állapot[i] - állapot[j]) == abs(i - j):
+                ütközések += 1
 
-
-
-
+    return ütközések
 
 
 if __name__ == "__main__":
     h = n_kiralyno_problema((-1,-1,-1,-1,-1,-1,-1,-1,0),8)
 
-    csucs = szélességi_fakeresés(h)
-
-    megoldas = csucs.út()
-    megoldas.reverse()
-
+    csúcs = best_first(h, heurisztika)
+    megoldas = csúcs.út()
+    megoldas.reverse() # visszafele kell olvasni a megoldáshoz
     print(megoldas)
+    print(csúcs.megoldás())
+    # csucs = szélességi_fakeresés(h)
+
+    # megoldas = csucs.út()
+    # megoldas.reverse()
+
+    # print(megoldas)
